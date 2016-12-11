@@ -96,8 +96,6 @@ Item{
       Repeater {
         model: dataSource.sources
         Feed {
-          Layout.fillWidth: true
-          Layout.fillHeight: true
           url: modelData
         }
       }

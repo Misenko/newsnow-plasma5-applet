@@ -1,9 +1,13 @@
-import QtQuick 2.1
+import QtQuick 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.2
 
-Row {
-  width: parent.width
+Rectangle {
+  color: theme.backgroundColor
+  Layout.fillWidth: true
+  Layout.fillHeight: true
+  clip: true
 
   property string url
   property int currentIndex: 0
@@ -21,13 +25,15 @@ Row {
   }
 
   PathView {
-    id: path
+    id: view
     anchors.fill: parent
+    preferredHighlightBegin: 0.25
+    preferredHighlightEnd: 1
     delegate: News {}
     path: Path {
       startX: 0
       startY: 0
-      PathLine { x: (path.width * path.count); y: path.height }
+      PathLine { x: (view.width * view.count); y: 0 }
     }
   }
 
@@ -43,7 +49,7 @@ Row {
     source: "../img/arrows.svgz"
     MouseArea {
       anchors.fill: parent
-      onClicked: path.incrementCurrentIndex();
+      onClicked: view.incrementCurrentIndex();
     }
   }
 
@@ -60,7 +66,7 @@ Row {
     transform: Rotation { origin.x: 7; origin.y: 7; axis { x: 0; y: 0; z: 1 } angle: 180 }
     MouseArea {
       anchors.fill: parent
-      onClicked: path.decrementCurrentIndex();
+      onClicked: view.decrementCurrentIndex();
     }
   }
 
@@ -70,13 +76,11 @@ Row {
     onWheel: {
       if (wheel.angleDelta.y < 0){
         //down
-        console.log("down");
-        path.incrementCurrentIndex();
+        view.incrementCurrentIndex();
       }
       else{
         //up
-        console.log("up");
-        path.decrementCurrentIndex();
+        view.decrementCurrentIndex();
       }
     }
     onClicked: {
@@ -111,8 +115,9 @@ Row {
     }
 
     indicator.running = false;
+    indicator.visible = false;
 
-    path.model = dataSource.data[url]["Items"]
+    view.model = dataSource.data[url]["Items"]
   }
 
   function feedReady(){
