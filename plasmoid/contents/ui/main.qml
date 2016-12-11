@@ -1,0 +1,180 @@
+import QtQuick 2.0
+import QtQuick.Controls 1.4
+import org.kde.draganddrop 2.0 as DragAndDrop
+import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick.Layouts 1.2
+import org.kde.plasma.components 2.0 as PlasmaComponents
+import "./content"
+
+Item{
+  id: mainWindow
+  width: 300
+  height: 200
+  clip: true
+
+  Layout.minimumWidth: 200
+
+  property var feeds: []
+  property string sourceList: plasmoid.configuration.feedList
+  property int updateInterval: plasmoid.configuration.updateInterval
+  property int switchInterval: plasmoid.configuration.switchInterval
+  property bool showLogo: plasmoid.configuration.logo
+  property bool showDropTarget: plasmoid.configuration.dropTarget
+  property bool animations: plasmoid.configuration.animations
+  property bool userConfiguring: plasmoid.userConfiguring
+
+  property int logoHeight: 96
+  property int logoWidth: 192
+  property int dropTargetHeight: 50
+
+  //onShowLogoChanged: setMinimumHeight()
+  //onShowDropTargetChanged: setMinimumHeight()
+
+  Component.onCompleted: {
+    connectSources(sourceList.split(','));
+    //setMinimumHeight();
+    //createFeeds();
+  }
+
+  onUserConfiguringChanged: {
+    if(userConfiguring){
+      return;
+    }
+
+    var newSources = sourceList.split(',');
+    if(!identicalSources(dataSource.sources, newSources)){
+      disconnectSources();
+      connectSources(newSources);
+      //deleteFeeds();
+      //createFeeds();
+    }
+    //setMinimumHeight();
+  }
+
+  PlasmaCore.DataSource {
+    id: dataSource
+    engine: "newsfeeds"
+    interval: 1000
+  }
+
+  ColumnLayout {
+    anchors.fill: parent
+
+    ColumnLayout{
+      id: feedsLayout
+      Layout.fillWidth: true
+      Layout.fillHeight: true
+
+      Image{
+        id: logoImage
+        source: "img/logo.svg"
+        width: logoWidth
+        height: logoHeight
+
+        states: [
+          State {
+            name: "showLogo"
+            when: showLogo
+            PropertyChanges {
+              target: logoImage
+              visible: true
+              height: logoHeight
+            }
+          },
+          State {
+            name: "hideLogo"
+            when: !showLogo
+            PropertyChanges {
+              target: logoImage
+              visible: false
+              height: 0
+            }
+          }
+        ]
+      }
+
+      Repeater {
+        model: dataSource.sources
+        Feed {
+          Layout.fillWidth: true
+          Layout.fillHeight: true
+          url: modelData
+        }
+      }
+
+      DropTarget {
+        id: dropTarget
+        Layout.fillWidth: true
+        height: dropTargetHeight
+
+        DragAndDrop.DropArea {
+          anchors.fill: parent
+          onDrop: {
+            addFeed(event.mimeData.url);
+          }
+        }
+
+        states: [
+          State {
+            name: "showDropTarget"
+            when: showDropTarget
+            PropertyChanges {
+              target: dropTarget
+              visible: true
+              height: dropTargetHeight
+            }
+          },
+          State {
+            name: "hideDropTarget"
+            when: !showDropTarget
+            PropertyChanges {
+              target: dropTarget
+              visible: false
+              height: 0
+            }
+          }
+        ]
+      }
+    }
+  }
+
+  function setMinimumHeight(){
+    if(typeof sources == 'undefined'){
+      return;
+    }
+
+    Layout.minimumHeight = (50 * sources.length);
+    if(showLogo){
+      Layout.minimumHeight = Layout.minimumHeight + logoHeight;
+    }
+    if(showDropTarget){
+      Layout.minimumHeight = Layout.minimumHeight + 50;
+    }
+  }
+
+  function identicalSources(oldSources, newSources){
+    if(oldSources.length != newSources.length){
+      return false;
+    }
+
+    for(var i=0; i<oldSources.length; i++){
+      if(oldSources[i] != newSources[i]){
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function connectSources(sources){
+    for(var i=0; i<sources.length; i++){
+      dataSource.connectSource(sources[i]);
+    }
+  }
+
+  function disconnectSources(){
+    for(var i=0; i<dataSource.sources.length; i++){
+      dataSource.disconnectSource(dataSource.sources[i]);
+    }
+  }
+}

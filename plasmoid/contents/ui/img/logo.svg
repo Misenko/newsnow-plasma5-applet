@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="192"
+   height="96"
+   viewBox="0 0 192 96.000002"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4509">
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="0"
+         id="stop4511" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="1"
+         id="stop4513" />
+    </linearGradient>
+    <linearGradient
+       id="linear0-5"
+       gradientUnits="userSpaceOnUse"
+       x1="40"
+       y1="17"
+       x2="54"
+       y2="31"
+       gradientTransform="matrix(0.34375,0,0,0.34375,0,0)">
+      <stop
+         offset="0"
+         style="stop-color:rgb(2.352941%,2.352941%,2.352941%);stop-opacity:1;"
+         id="stop4351" />
+      <stop
+         offset="1"
+         style="stop-color:rgb(0%,0%,0%);stop-opacity:0;"
+         id="stop4353" />
+    </linearGradient>
+    <filter
+       height="100%"
+       width="100%"
+       y="0%"
+       x="0%"
+       filterUnits="objectBoundingBox"
+       id="alpha">
+      <feColorMatrix
+         id="feColorMatrix4141"
+         values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"
+         in="SourceGraphic"
+         type="matrix" />
+    </filter>
+    <mask
+       id="mask0">
+      <g
+         id="g4144"
+         filter="url(#alpha)">
+        <rect
+           id="rect4146"
+           style="fill:rgb(0%,0%,0%);fill-opacity:0.501961;stroke:none;"
+           height="22"
+           width="22"
+           y="0"
+           x="0" />
+      </g>
+    </mask>
+    <clipPath
+       id="clip1">
+      <rect
+         id="rect4149"
+         height="22"
+         width="22" />
+    </clipPath>
+    <g
+       clip-path="url(#clip1)"
+       id="surface6">
+      <path
+         id="path4152"
+         d="M 3.4375 1.375 L 13.75 1.375 L 13.75 1.03125 L 3.4375 1.03125 Z M 3.4375 1.375 "
+         style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" />
+    </g>
+    <mask
+       id="mask1">
+      <g
+         id="g4155"
+         filter="url(#alpha)">
+        <rect
+           id="rect4157"
+           style="fill:rgb(0%,0%,0%);fill-opacity:0.25098;stroke:none;"
+           height="22"
+           width="22"
+           y="0"
+           x="0" />
+      </g>
+    </mask>
+    <clipPath
+       id="clip2">
+      <rect
+         id="rect4160"
+         height="22"
+         width="22" />
+    </clipPath>
+    <g
+       clip-path="url(#clip2)"
+       id="surface9">
+      <path
+         id="path4163"
+         d="M 3.4375 20.96875 L 18.5625 20.96875 L 18.5625 20.625 L 3.4375 20.625 Z M 3.4375 20.96875 "
+         style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" />
+    </g>
+    <mask
+       id="mask2">
+      <g
+         id="g4166"
+         filter="url(#alpha)">
+        <rect
+           id="rect4168"
+           style="fill:rgb(0%,0%,0%);fill-opacity:0.501961;stroke:none;"
+           height="22"
+           width="22"
+           y="0"
+           x="0" />
+      </g>
+    </mask>
+    <clipPath
+       id="clip3">
+      <rect
+         id="rect4171"
+         height="22"
+         width="22" />
+    </clipPath>
+    <g
+       clip-path="url(#clip3)"
+       id="surface12">
+      <path
+         id="path4174"
+         d="M 18.5625 5.84375 L 13.75 1.03125 L 13.75 5.84375 Z M 18.5625 5.84375 "
+         style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" />
+    </g>
+    <mask
+       id="mask3">
+      <g
+         id="g4177"
+         filter="url(#alpha)">
+        <rect
+           id="rect4179"
+           style="fill:rgb(0%,0%,0%);fill-opacity:0.101961;stroke:none;"
+           height="22"
+           width="22"
+           y="0"
+           x="0" />
+      </g>
+    </mask>
+    <linearGradient
+       gradientTransform="matrix(0.34375,0,0,0.34375,0,0)"
+       y2="31"
+       x2="54"
+       y1="17"
+       x1="40"
+       gradientUnits="userSpaceOnUse"
+       id="linear0">
+      <stop
+         id="stop4182"
+         style="stop-color:rgb(2.352941%,2.352941%,2.352941%);stop-opacity:1;"
+         offset="0" />
+      <stop
+         id="stop4184"
+         style="stop-color:rgb(0%,0%,0%);stop-opacity:0;"
+         offset="1" />
+    </linearGradient>
+    <clipPath
+       id="clip4">
+      <rect
+         id="rect4187"
+         height="22"
+         width="22" />
+    </clipPath>
+    <g
+       clip-path="url(#clip4)"
+       id="surface15">
+      <path
+         id="path4190"
+         d="M 13.75 5.84375 L 18.5625 10.65625 L 18.5625 5.84375 Z M 13.75 5.84375 "
+         style=" stroke:none;fill-rule:evenodd;fill:url(#linear0);" />
+    </g>
+    <linearGradient
+       gradientTransform="matrix(0.34375,0,0,0.34375,-16.5,-114.24875)"
+       y2="336.36"
+       x2="0"
+       y1="392.36"
+       x1="0"
+       gradientUnits="userSpaceOnUse"
+       id="linear1">
+      <stop
+         id="stop4193"
+         style="stop-color:rgb(100%,100%,100%);stop-opacity:0;"
+         offset="0" />
+      <stop
+         id="stop4195"
+         style="stop-color:rgb(100%,100%,100%);stop-opacity:0.2;"
+         offset="1" />
+    </linearGradient>
+    <mask
+       id="mask4">
+      <g
+         id="g4198"
+         filter="url(#alpha)">
+        <rect
+           id="rect4200"
+           style="fill:rgb(0%,0%,0%);fill-opacity:0.74902;stroke:none;"
+           height="22"
+           width="22"
+           y="0"
+           x="0" />
+      </g>
+    </mask>
+    <clipPath
+       id="clip5">
+      <rect
+         id="rect4203"
+         height="22"
+         width="22" />
+    </clipPath>
+    <g
+       clip-path="url(#clip5)"
+       id="surface18">
+      <path
+         id="path4206"
+         d="M 7.578125 7.550781 L 7.578125 8.582031 C 11.183594 8.582031 14.109375 11.507812 14.109375 15.113281 L 15.140625 15.113281 C 15.140625 10.9375 11.753906 7.550781 7.578125 7.550781 M 7.578125 9.957031 L 7.578125 10.988281 C 9.855469 10.988281 11.703125 12.835938 11.703125 15.113281 L 12.734375 15.113281 C 12.734375 12.265625 10.425781 9.957031 7.578125 9.957031 M 8.78125 12.707031 C 8.113281 12.707031 7.578125 13.246094 7.578125 13.910156 C 7.578125 14.578125 8.113281 15.113281 8.78125 15.113281 C 9.445312 15.113281 9.984375 14.578125 9.984375 13.910156 C 9.984375 13.246094 9.445312 12.707031 8.78125 12.707031 "
+         style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" />
+    </g>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4509"
+       id="linearGradient4545"
+       gradientUnits="userSpaceOnUse"
+       x1="100.51018"
+       y1="1030.3914"
+       x2="100.51018"
+       y2="1004.8848"
+       gradientTransform="translate(-0.67052397,-2008.9384)" />
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask4541">
+      <rect
+         style="opacity:1;fill:url(#linearGradient4545);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:100;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4543"
+         width="211.62695"
+         height="48"
+         x="-5.7212868"
+         y="-1004.5762"
+         transform="scale(1,-1)" />
+    </mask>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="104.71614"
+     inkscape:cy="53.494526"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-956.36216)">
+    <g
+       id="g4294"
+       transform="translate(0.67052397,0)">
+      <g
+         inkscape:label="Capa 1"
+         style="fill:#f27935"
+         id="layer1-8"
+         transform="matrix(2.3889598,0,0,2.3889598,-4.2671322,-1502.5219)">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#fc963a;fill-opacity:1;stroke-width:0.1;stroke-linecap:round"
+           d="m 3,3 0,2 a 14,14 0 0 1 14,14 l 2,0 A 16,16 0 0 0 3,3 Z m 0,5 0,2 a 9,9 0 0 1 9,9 l 2,0 A 11,11 0 0 0 3,8 Z m 2.5,6 A 2.5,2.5 0 0 0 3,16.5 2.5,2.5 0 0 0 5.5,19 2.5,2.5 0 0 0 8,16.5 2.5,2.5 0 0 0 5.5,14 Z"
+           transform="translate(0,1030.3622)"
+           id="path4171-5" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4288"
+         y="1004.1274"
+         x="41.7094"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#fc963a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:35px;font-family:'Roboto Mono Light for Powerline';-inkscape-font-specification:'Roboto Mono Light for Powerline Light';fill:#fc963a;fill-opacity:1"
+           y="1004.1274"
+           x="41.7094"
+           id="tspan4290"
+           sodipodi:role="line"><tspan
+   id="tspan4292"
+   style="fill:#ffffff">NEWS</tspan>NOW</tspan></text>
+    </g>
+    <g
+       id="g4294-2"
+       transform="matrix(1,0,0,-1,0.67052397,2008.9384)"
+       mask="url(#mask4541)">
+      <g
+         inkscape:label="Capa 1"
+         style="fill:#f27935"
+         id="layer1-8-7"
+         transform="matrix(2.3889598,0,0,2.3889598,-4.2671322,-1502.5219)">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#fc963a;fill-opacity:1;stroke-width:0.1;stroke-linecap:round"
+           d="m 3,3 0,2 a 14,14 0 0 1 14,14 l 2,0 A 16,16 0 0 0 3,3 Z m 0,5 0,2 a 9,9 0 0 1 9,9 l 2,0 A 11,11 0 0 0 3,8 Z m 2.5,6 A 2.5,2.5 0 0 0 3,16.5 2.5,2.5 0 0 0 5.5,19 2.5,2.5 0 0 0 8,16.5 2.5,2.5 0 0 0 5.5,14 Z"
+           transform="translate(0,1030.3622)"
+           id="path4171-5-3" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4288-9"
+         y="1004.1274"
+         x="41.7094"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#fc963a;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:35px;font-family:'Roboto Mono Light for Powerline';-inkscape-font-specification:'Roboto Mono Light for Powerline Light';fill:#fc963a;fill-opacity:1"
+           y="1004.1274"
+           x="41.7094"
+           id="tspan4290-0"
+           sodipodi:role="line"><tspan
+   id="tspan4292-1"
+   style="fill:#ffffff">NEWS</tspan>NOW</tspan></text>
+    </g>
+  </g>
+</svg>
