@@ -84,7 +84,7 @@ Rectangle {
       }
     }
     onClicked: {
-      //Qt.openUrlExternally(parent.model.get(currentIndex).link);
+      Qt.openUrlExternally(view.model[(view.currentIndex + view.count - 2) % view.count]["Link"]);
     }
     onEntered: {
       //news.feedTitleToFuzzyDate();
