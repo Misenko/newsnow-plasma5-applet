@@ -27,13 +27,13 @@ Rectangle {
   PathView {
     id: view
     anchors.fill: parent
-    preferredHighlightBegin: 0.25
+    preferredHighlightBegin: 0
     preferredHighlightEnd: 1
     delegate: News {}
     path: Path {
-      startX: 0
+      startX: view.width/2.0
       startY: 0
-      PathLine { x: (view.width * view.count); y: 0 }
+      PathLine { x: (view.width * view.count) + view.width/2.0; y: 0 }
     }
   }
 
@@ -84,7 +84,7 @@ Rectangle {
       }
     }
     onClicked: {
-      Qt.openUrlExternally(view.model[(view.currentIndex + view.count - 2) % view.count]["Link"]);
+      Qt.openUrlExternally(view.model[view.currentIndex]["Link"]);
     }
     onEntered: {
       //news.feedTitleToFuzzyDate();
