@@ -14,10 +14,9 @@ Item{
 
   Layout.minimumWidth: 200
 
-  property var feeds: []
   property string sourceList: plasmoid.configuration.feedList
   property int updateInterval: plasmoid.configuration.updateInterval
-  property int switchInterval: plasmoid.configuration.switchInterval
+  property int switchInterval: plasmoid.configuration.switchInterval * 1000
   property bool showLogo: plasmoid.configuration.logo
   property bool showDropTarget: plasmoid.configuration.dropTarget
   property bool animations: plasmoid.configuration.animations
@@ -27,13 +26,14 @@ Item{
   property int logoWidth: 192
   property int dropTargetHeight: 50
 
+  property int cascadingIndex: 0
+
   //onShowLogoChanged: setMinimumHeight()
   //onShowDropTargetChanged: setMinimumHeight()
 
   Component.onCompleted: {
     connectSources(sourceList.split(','));
     //setMinimumHeight();
-    //createFeeds();
   }
 
   onUserConfiguringChanged: {
@@ -45,8 +45,6 @@ Item{
     if(!identicalSources(dataSource.sources, newSources)){
       disconnectSources();
       connectSources(newSources);
-      //deleteFeeds();
-      //createFeeds();
     }
     //setMinimumHeight();
   }
@@ -54,7 +52,22 @@ Item{
   PlasmaCore.DataSource {
     id: dataSource
     engine: "newsfeeds"
-    interval: 1000
+    interval: updateInterval
+  }
+
+  Timer {
+    id: newsSwitch
+    interval: switchInterval
+    repeat: true
+    running: true
+    onTriggered: switchNews()
+  }
+
+  Timer {
+    id: switchCascade
+    interval: 200
+    running: false
+    onTriggered: switchNews()
   }
 
   ColumnLayout {
@@ -94,6 +107,7 @@ Item{
       }
 
       Repeater {
+        id: feeds
         model: dataSource.sources
         Feed {
           url: modelData
@@ -174,5 +188,20 @@ Item{
     for(var i=0; i<dataSource.sources.length; i++){
       dataSource.disconnectSource(dataSource.sources[i]);
     }
+  }
+
+  function switchNews(){
+    if (feeds.count < 1){
+      return;
+    }
+
+    if (cascadingIndex >= feeds.count){
+      cascadingIndex = 0;
+      return;
+    }
+
+    feeds.itemAt(cascadingIndex).next();
+    cascadingIndex++;
+    switchCascade.running = true
   }
 }

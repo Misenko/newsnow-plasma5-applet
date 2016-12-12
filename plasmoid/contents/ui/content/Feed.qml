@@ -10,9 +10,7 @@ Rectangle {
   clip: true
 
   property string url
-  property int currentIndex: 0
-  property int animationDuration: 500
-  property var hovered: false
+  property bool hovered: false
 
   Component.onCompleted: {
     displayNews();
@@ -122,5 +120,13 @@ Rectangle {
 
   function feedReady(){
     return dataSource.data[url]["Ready"]
+  }
+
+  function next(){
+    if (hovered || !feedReady()){
+      return;
+    }
+
+    view.incrementCurrentIndex();
   }
 }
