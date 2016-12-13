@@ -25,13 +25,13 @@ Rectangle {
   PathView {
     id: view
     anchors.fill: parent
-    preferredHighlightBegin: 0
+    preferredHighlightBegin: 1.0 / view.count
     preferredHighlightEnd: 1
     delegate: News {}
     path: Path {
-      startX: view.width/2.0
+      startX: - (view.width/2.0)
       startY: 0
-      PathLine { x: (view.width * view.count) + view.width/2.0; y: 0 }
+      PathLine { x: (view.width * view.count) - (view.width/2.0); y: 0 }
     }
   }
 
