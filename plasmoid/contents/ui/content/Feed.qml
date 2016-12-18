@@ -10,9 +10,7 @@ Rectangle {
   clip: true
 
   property string url
-  property int currentIndex: 0
-  property int animationDuration: 500
-  property var hovered: false
+  property bool hovered: false
 
   Component.onCompleted: {
     displayNews();
@@ -36,17 +34,16 @@ Rectangle {
       }
     }
     anchors.fill: parent
-    width: parent.width
-    preferredHighlightBegin: 0
+    preferredHighlightBegin: 1.0 / view.count
     preferredHighlightEnd: 1
     delegate: News
     {
       iconImageUrl : view.iconImage
     }
     path: Path {
-      startX: view.width/2.0
+      startX: - (view.width/2.0)
       startY: 0
-      PathLine { x: (view.width * view.count) + view.width/2.0; y: 0 }
+      PathLine { x: (view.width * view.count) - (view.width/2.0); y: 0 }
     }
   }
 
@@ -133,10 +130,18 @@ Rectangle {
     view.model = dataSource.data[url]["Items"];
 
     // set the Interval to smaller value after the initial loading has finished
-    dataSource.interval = 5000;
+    dataSource.interval = updateInterval;
   }
 
   function feedReady(){
     return (dataSource.data[url] && dataSource.data[url]["FeedReady"]);
+  }
+
+  function next(){
+    if (hovered || !feedReady()){
+      return;
+    }
+
+    view.incrementCurrentIndex();
   }
 }
