@@ -26,10 +26,23 @@ Rectangle {
 
   PathView {
     id: view
+    property url iconImage :
+    {
+      if (dataSource.data[url] && dataSource.data[url]["FeedReady"] && dataSource.data[url]["Image"]) {
+        dataSource.data[url]["Image"];
+      }
+      else {
+        "../img/rss.svg";
+      }
+    }
     anchors.fill: parent
+    width: parent.width
     preferredHighlightBegin: 0
     preferredHighlightEnd: 1
-    delegate: News {}
+    delegate: News
+    {
+      iconImageUrl : view.iconImage
+    }
     path: Path {
       startX: view.width/2.0
       startY: 0
@@ -102,7 +115,7 @@ Rectangle {
 
   Timer{
     id: newsRetrievalTimer
-    interval: 500
+    interval: 1000
     running: false
     repeat: false
     onTriggered: displayNews()
@@ -117,10 +130,13 @@ Rectangle {
     indicator.running = false;
     indicator.visible = false;
 
-    view.model = dataSource.data[url]["Items"]
+    view.model = dataSource.data[url]["Items"];
+
+    // set the Interval to smaller value after the initial loading has finished
+    dataSource.interval = 5000;
   }
 
   function feedReady(){
-    return dataSource.data[url]["Ready"]
+    return (dataSource.data[url] && dataSource.data[url]["FeedReady"]);
   }
 }

@@ -54,7 +54,7 @@ Item{
   PlasmaCore.DataSource {
     id: dataSource
     engine: "newsfeeds"
-    interval: 1000
+    interval: 100
   }
 
   ColumnLayout {

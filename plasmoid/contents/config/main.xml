@@ -23,6 +23,7 @@
   </group>
   <group name="Feeds">
     <entry name="feedList" type="String">
+        <!-- <default>https://www.root.cz/rss/clanky/</default> -->
         <default>http://dot.kde.org/rss.xml</default>
     </entry>
 </kcfg>
