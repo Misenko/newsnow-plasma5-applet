@@ -128,9 +128,6 @@ Rectangle {
     indicator.visible = false;
 
     view.model = dataSource.data[url]["Items"];
-
-    // set the Interval to smaller value after the initial loading has finished
-    dataSource.interval = updateInterval;
   }
 
   function feedReady(){

@@ -15,7 +15,7 @@ Item{
   Layout.minimumWidth: 200
 
   property string sourceList: plasmoid.configuration.feedList
-  property int updateInterval: plasmoid.configuration.updateInterval
+  property int updateInterval: plasmoid.configuration.updateInterval * 60000
   property int switchInterval: plasmoid.configuration.switchInterval * 1000
   property bool showLogo: plasmoid.configuration.logo
   property bool showDropTarget: plasmoid.configuration.dropTarget
@@ -52,7 +52,45 @@ Item{
   PlasmaCore.DataSource {
     id: dataSource
     engine: "newsfeeds"
-    interval: 200
+    interval: updateInterval
+    onNewData: {
+      console.log("onNewData: sourceName=" + sourceName + " FeedReady=" + data["FeedReady"]);
+    }
+    onSourceAdded: {
+      console.log("onSourceAdded: source=" + source);
+      checkAllReady();
+    }
+    onSourceRemoved: {
+      console.log("onSourceRemoved: source=" + source);
+    }
+    onSourceConnected: {
+      console.log("onSourceConnected: source=" + source);
+    }
+    onSourceDisconnected: {
+      console.log("onSourceDisconnected: source=" + source);
+    }
+    onIntervalChanged: {
+      console.log("onIntervalChanged");
+    }
+    onEngineChanged: {
+      console.log("onEngineChanged");
+    }
+    onDataChanged: {
+      console.log("onDataChanged " + new Date().getTime());
+    }
+    onConnectedSourcesChanged: {
+      console.log("onConnectedSourcesChanged");
+    }
+    onSourcesChanged: {
+      console.log("onSourcesChanged");
+    }
+  }
+
+  Timer {
+    id: allReadyWait
+    interval: 2000
+    repeat: false
+    onTriggered: checkAllReady()
   }
 
   Timer {
@@ -203,5 +241,27 @@ Item{
     feeds.itemAt(cascadingIndex).next();
     cascadingIndex++;
     switchCascade.running = true
+  }
+
+  function checkAllReady(){
+    if(allReadyWait.running){
+      return;
+    }
+
+    console.log("checkAllReady");
+    var feedsReady = true
+    for(var i=0; i<dataSource.sources.length; i++){
+      console.log(dataSource.data[dataSource.sources[i]]["FeedReady"]);
+      feedsReady = feedsReady && dataSource.data[dataSource.sources[i]]["FeedReady"];
+    }
+
+    if(feedsReady){
+      dataSource.interval = updateInterval;
+    }
+    else{
+      dataSource.interval = 2000;
+      allReadyWait.running = true;
+    }
+    console.log("feedsReady=" + feedsReady);
   }
 }
