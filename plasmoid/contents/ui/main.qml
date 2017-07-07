@@ -53,36 +53,8 @@ Item{
     id: dataSource
     engine: "newsfeeds"
     interval: updateInterval
-    onNewData: {
-      console.log("onNewData: sourceName=" + sourceName + " FeedReady=" + data["FeedReady"]);
-    }
     onSourceAdded: {
-      console.log("onSourceAdded: source=" + source);
       checkAllReady();
-    }
-    onSourceRemoved: {
-      console.log("onSourceRemoved: source=" + source);
-    }
-    onSourceConnected: {
-      console.log("onSourceConnected: source=" + source);
-    }
-    onSourceDisconnected: {
-      console.log("onSourceDisconnected: source=" + source);
-    }
-    onIntervalChanged: {
-      console.log("onIntervalChanged");
-    }
-    onEngineChanged: {
-      console.log("onEngineChanged");
-    }
-    onDataChanged: {
-      console.log("onDataChanged " + new Date().getTime());
-    }
-    onConnectedSourcesChanged: {
-      console.log("onConnectedSourcesChanged");
-    }
-    onSourcesChanged: {
-      console.log("onSourcesChanged");
     }
   }
 
@@ -248,7 +220,6 @@ Item{
       return;
     }
 
-    console.log("checkAllReady");
     var feedsReady = true
     for(var i=0; i<dataSource.sources.length; i++){
       feedsReady = feedsReady &&
@@ -264,6 +235,5 @@ Item{
       dataSource.interval = 2000;
       allReadyWait.running = true;
     }
-    console.log("feedsReady=" + feedsReady);
   }
 }
