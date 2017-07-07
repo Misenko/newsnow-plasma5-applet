@@ -251,8 +251,10 @@ Item{
     console.log("checkAllReady");
     var feedsReady = true
     for(var i=0; i<dataSource.sources.length; i++){
-      console.log(dataSource.data[dataSource.sources[i]]["FeedReady"]);
-      feedsReady = feedsReady && dataSource.data[dataSource.sources[i]]["FeedReady"];
+      feedsReady = feedsReady &&
+                   (typeof dataSource.data[dataSource.sources[i]] != 'undefined') &&
+                   (typeof dataSource.data[dataSource.sources[i]]["Title"] != 'undefined') &&
+                   (typeof dataSource.data[dataSource.sources[i]]["Image"] != 'undefined');
     }
 
     if(feedsReady){

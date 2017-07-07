@@ -26,7 +26,7 @@ Rectangle {
     id: view
     property url iconImage :
     {
-      if (dataSource.data[url] && dataSource.data[url]["FeedReady"] && dataSource.data[url]["Image"]) {
+      if ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Image"] != 'undefined') && dataSource.data[url]["Image"] != "NO_ICON") {
         dataSource.data[url]["Image"];
       }
       else {
@@ -131,7 +131,7 @@ Rectangle {
   }
 
   function feedReady(){
-    return (dataSource.data[url] && dataSource.data[url]["FeedReady"]);
+    return ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Title"] != 'undefined'));
   }
 
   function next(){
