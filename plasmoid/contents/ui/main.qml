@@ -8,11 +8,10 @@ import "./content"
 
 Item{
   id: mainWindow
-  width: 300
-  height: 200
   clip: true
 
-  Layout.minimumWidth: 200
+  Layout.minimumWidth: 250
+  Layout.minimumHeight: 200
 
   property string sourceList: plasmoid.configuration.feedList
   property int updateInterval: plasmoid.configuration.updateInterval * 60000
@@ -28,12 +27,12 @@ Item{
 
   property int cascadingIndex: 0
 
-  //onShowLogoChanged: setMinimumHeight()
-  //onShowDropTargetChanged: setMinimumHeight()
+  onShowLogoChanged: setMinimumHeight()
+  onShowDropTargetChanged: setMinimumHeight()
 
   Component.onCompleted: {
     connectSources(sourceList.split(','));
-    //setMinimumHeight();
+    setMinimumHeight();
   }
 
   onUserConfiguringChanged: {
@@ -46,7 +45,8 @@ Item{
       disconnectSources();
       connectSources(newSources);
     }
-    //setMinimumHeight();
+
+    setMinimumHeight();
   }
 
   PlasmaCore.DataSource {
@@ -118,7 +118,7 @@ Item{
 
       Repeater {
         id: feeds
-        model: dataSource.sources
+        model: dataSource.connectedSources
         Feed {
           url: modelData
         }
@@ -161,17 +161,20 @@ Item{
   }
 
   function setMinimumHeight(){
-    if(typeof sources == 'undefined'){
+    if(typeof dataSource.connectedSources == 'undefined'){
       return;
     }
 
-    Layout.minimumHeight = (50 * sources.length);
+    Layout.minimumHeight = (50 * dataSource.connectedSources.length);
     if(showLogo){
-      Layout.minimumHeight = Layout.minimumHeight + logoHeight;
+      Layout.minimumHeight = Layout.minimumHeight + 100;
     }
     if(showDropTarget){
       Layout.minimumHeight = Layout.minimumHeight + 50;
     }
+
+    console.log("number of sources: " + dataSource.connectedSources.length);
+    console.log("min height: " + Layout.minimumHeight);
   }
 
   function identicalSources(oldSources, newSources){
@@ -195,8 +198,8 @@ Item{
   }
 
   function disconnectSources(){
-    for(var i=0; i<dataSource.sources.length; i++){
-      dataSource.disconnectSource(dataSource.sources[i]);
+    for(var i=0; i<dataSource.connectedSources.length; i++){
+      dataSource.disconnectSource(dataSource.connectedSources[i]);
     }
   }
 
@@ -221,11 +224,11 @@ Item{
     }
 
     var feedsReady = true
-    for(var i=0; i<dataSource.sources.length; i++){
+    for(var i=0; i<dataSource.connectedSources.length; i++){
       feedsReady = feedsReady &&
-                   (typeof dataSource.data[dataSource.sources[i]] != 'undefined') &&
-                   (typeof dataSource.data[dataSource.sources[i]]["Title"] != 'undefined') &&
-                   (typeof dataSource.data[dataSource.sources[i]]["Image"] != 'undefined');
+                   (typeof dataSource.data[dataSource.connectedSources[i]] != 'undefined') &&
+                   (typeof dataSource.data[dataSource.connectedSources[i]]["Title"] != 'undefined') &&
+                   (typeof dataSource.data[dataSource.connectedSources[i]]["Image"] != 'undefined');
     }
 
     if(feedsReady){
