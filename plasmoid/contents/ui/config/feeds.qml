@@ -4,8 +4,6 @@ import QtQuick.Layouts 1.2 as QtLayouts
 
 Item {
   id: feedsPage
-  width: childrenRect.width
-  height: childrenRect.height
 
   property string feedList
   property alias cfg_feedList: feedsPage.feedList

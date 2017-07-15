@@ -4,8 +4,6 @@ import QtQuick.Layouts 1.2 as QtLayouts
 
 Item {
   id: generalPage
-  width: childrenRect.width
-  height: childrenRect.height
 
   property alias cfg_dropTarget: dropTargetCheckBox.checked
   property alias cfg_logo: logoCheckBox.checked
