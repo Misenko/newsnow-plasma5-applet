@@ -172,9 +172,6 @@ Item{
     if(showDropTarget){
       Layout.minimumHeight = Layout.minimumHeight + 50;
     }
-
-    console.log("number of sources: " + dataSource.connectedSources.length);
-    console.log("min height: " + Layout.minimumHeight);
   }
 
   function identicalSources(oldSources, newSources){
