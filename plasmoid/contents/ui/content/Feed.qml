@@ -24,7 +24,7 @@ Rectangle {
 
   PathView {
     id: view
-    property url iconImage :
+    property url iconImage:
     {
       if ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Image"] != 'undefined') && dataSource.data[url]["Image"] != "NO_ICON") {
         dataSource.data[url]["Image"];
@@ -38,7 +38,9 @@ Rectangle {
     preferredHighlightEnd: 1
     delegate: News
     {
-      iconImageUrl : view.iconImage
+      iconImageUrl: view.iconImage
+      feedTitle: dataSource.data[url]["Title"]
+      numberOfNews: dataSource.data[url]["Items"].length
     }
     path: Path {
       startX: - (view.width/2.0)
@@ -59,7 +61,7 @@ Rectangle {
     source: "../img/arrows.svgz"
     MouseArea {
       anchors.fill: parent
-      onClicked: view.incrementCurrentIndex();
+      onClicked: nextNews();
     }
   }
 
@@ -76,7 +78,7 @@ Rectangle {
     transform: Rotation { origin.x: 7; origin.y: 7; axis { x: 0; y: 0; z: 1 } angle: 180 }
     MouseArea {
       anchors.fill: parent
-      onClicked: view.decrementCurrentIndex();
+      onClicked: previousNews();
     }
   }
 
@@ -86,24 +88,24 @@ Rectangle {
     onWheel: {
       if (wheel.angleDelta.y < 0){
         //down
-        view.incrementCurrentIndex();
+        nextNews();
       }
       else{
         //up
-        view.decrementCurrentIndex();
+        previousNews();
       }
     }
     onClicked: {
       Qt.openUrlExternally(view.model[view.currentIndex]["Link"]);
     }
     onEntered: {
-      //news.feedTitleToFuzzyDate();
+      view.currentItem.feedTitleToFuzzyDate();
       hovered = true;
       rightArrow.opacity = 1;
       leftArrow.opacity = 1;
     }
     onExited: {
-      //news.feedTitleToFeedTitle();
+      view.currentItem.feedTitleToFeedTitle();
       hovered = false;
       rightArrow.opacity = 0;
       leftArrow.opacity = 0;
@@ -140,5 +142,17 @@ Rectangle {
     }
 
     view.incrementCurrentIndex();
+  }
+
+  function nextNews(){
+    view.currentItem.feedTitleToFeedTitle();
+    view.incrementCurrentIndex();
+    view.currentItem.feedTitleToFuzzyDate();
+  }
+
+  function previousNews(){
+    view.currentItem.feedTitleToFeedTitle();
+    view.decrementCurrentIndex();
+    view.currentItem.feedTitleToFuzzyDate();
   }
 }
