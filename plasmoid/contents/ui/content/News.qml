@@ -35,6 +35,7 @@ Item{
     Label{
       width: wrapper.width
       text: modelData["Title"]
+      textFormat: Text.StyledText
       wrapMode: Text.WordWrap
     }
   }
