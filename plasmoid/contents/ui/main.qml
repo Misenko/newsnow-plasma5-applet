@@ -132,7 +132,7 @@ Item{
         DragAndDrop.DropArea {
           anchors.fill: parent
           onDrop: {
-            addFeed(event.mimeData.url);
+            connectSource(event.mimeData.url);
           }
         }
 
@@ -190,7 +190,7 @@ Item{
 
   function connectSources(sources){
     for(var i=0; i<sources.length; i++){
-      dataSource.connectSource(sources[i]);
+      connectSource(sources[i]);
     }
   }
 
@@ -198,6 +198,11 @@ Item{
     for(var i=0; i<dataSource.connectedSources.length; i++){
       dataSource.disconnectSource(dataSource.connectedSources[i]);
     }
+  }
+
+  function connectSource(source){
+    dataSource.connectSource(source);
+    setMinimumHeight();
   }
 
   function switchNews(){
