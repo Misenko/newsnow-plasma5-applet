@@ -132,7 +132,9 @@ Item{
         DragAndDrop.DropArea {
           anchors.fill: parent
           onDrop: {
-            connectSource(event.mimeData.url);
+            var source = event.mimeData.url
+            connectSource(source);
+            plasmoid.configuration.feedList += ("," + source);
           }
         }
 
