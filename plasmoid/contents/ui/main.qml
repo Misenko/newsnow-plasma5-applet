@@ -41,7 +41,7 @@ Item{
     }
 
     var newSources = sourceList.split(',');
-    if(!identicalSources(dataSource.sources, newSources)){
+    if(!identicalSources(dataSource.connectedSources, newSources)){
       disconnectSources();
       connectSources(newSources);
     }
@@ -190,13 +190,18 @@ Item{
 
   function connectSources(sources){
     for(var i=0; i<sources.length; i++){
+      if (!sources[i]){
+        continue;
+      }
+
       connectSource(sources[i]);
     }
   }
 
   function disconnectSources(){
-    for(var i=0; i<dataSource.connectedSources.length; i++){
-      dataSource.disconnectSource(dataSource.connectedSources[i]);
+    var sources = dataSource.connectedSources.slice(0);
+    for(var i=0; i<sources.length; i++){
+      dataSource.disconnectSource(sources[i]);
     }
   }
 
