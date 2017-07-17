@@ -1,6 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 1.4
-import org.kde.draganddrop 2.0 as DragAndDrop
 import org.kde.plasma.core 2.0 as PlasmaCore
 import QtQuick.Layouts 1.2
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -129,12 +128,16 @@ Item{
         Layout.fillWidth: true
         height: dropTargetHeight
 
-        DragAndDrop.DropArea {
+        DropArea {
           anchors.fill: parent
-          onDrop: {
-            var source = event.mimeData.url
-            connectSource(source);
-            plasmoid.configuration.feedList += ("," + source);
+          onDropped: {
+            if(drop.hasUrls){
+              for(var i=0; i<drop.urls.length; i++){
+                connectSource(drop.urls[i]);
+                plasmoid.configuration.feedList += ("," + drop.urls[i]);
+              }
+              accept();
+            }
           }
         }
 
