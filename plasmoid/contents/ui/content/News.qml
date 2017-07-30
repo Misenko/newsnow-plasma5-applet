@@ -33,6 +33,9 @@ Item{
         text: newsNumber + feedTitle
         wrapMode: Text.WordWrap
         font.bold: true
+        width: wrapper.width - 21
+        maximumLineCount: 1
+        elide: Text.ElideRight
       }
     }
 
