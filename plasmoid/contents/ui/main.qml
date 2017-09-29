@@ -89,7 +89,7 @@ Item{
 
       Image{
         id: logoImage
-        source: "img/logo.svg"
+        source: "img/logo-light.svg"
         width: logoWidth
         height: logoHeight
 

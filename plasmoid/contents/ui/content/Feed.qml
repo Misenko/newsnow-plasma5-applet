@@ -36,7 +36,7 @@ Rectangle {
         dataSource.data[url]["Image"];
       }
       else {
-        "../img/rss.svg";
+        "../img/rss-orange.svg";
       }
     }
     anchors.fill: parent

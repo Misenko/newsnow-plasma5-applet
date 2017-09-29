@@ -15,9 +15,15 @@ Item{
     RowLayout{
       anchors.fill: parent
 
-      PlasmaCore.IconItem {
-        Layout.fillHeight: true
-        source: "akregator"
+      Image {
+        source: "../img/rss-white.svg";
+        sourceSize: Qt.size(45, 45)
+        Image {
+            id: img
+            source: parent.source
+            width: 0
+            height: 0
+        }
       }
 
       ColumnLayout{
