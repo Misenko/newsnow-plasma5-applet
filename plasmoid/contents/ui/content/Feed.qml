@@ -11,9 +11,15 @@ Rectangle {
 
   property string url
   property bool hovered: false
+  property bool failed: false
 
   Component.onCompleted: {
     displayNews();
+  }
+
+  NoNews {
+    id: noNews
+    visible: false
   }
 
   BusyIndicator {
@@ -96,15 +102,24 @@ Rectangle {
       }
     }
     onClicked: {
+      if (failed) {
+        return;
+      }
       Qt.openUrlExternally(view.model[view.currentIndex]["Link"]);
     }
     onEntered: {
+      if (failed) {
+        return;
+      }
       view.currentItem.feedTitleToFuzzyDate();
       hovered = true;
       rightArrow.opacity = 1;
       leftArrow.opacity = 1;
     }
     onExited: {
+      if (failed) {
+        return;
+      }
       view.currentItem.feedTitleToFeedTitle();
       hovered = false;
       rightArrow.opacity = 0;
@@ -129,7 +144,14 @@ Rectangle {
     indicator.running = false;
     indicator.visible = false;
 
-    view.model = dataSource.data[url]["Items"];
+    if (typeof(dataSource.data[url]["Items"]) == 'undefined'){
+      console.log("No items found, setting NoNews to visible")
+      noNews.visible = true;
+      view.visible = false;
+      failed = true;
+    } else {
+      view.model = dataSource.data[url]["Items"];
+    }
   }
 
   function feedReady(){
@@ -145,14 +167,24 @@ Rectangle {
   }
 
   function nextNews(){
+    if (failed) {
+      return;
+    }
     view.currentItem.feedTitleToFeedTitle();
     view.incrementCurrentIndex();
     view.currentItem.feedTitleToFuzzyDate();
   }
 
   function previousNews(){
+    if (failed) {
+      return;
+    }
     view.currentItem.feedTitleToFeedTitle();
     view.decrementCurrentIndex();
     view.currentItem.feedTitleToFuzzyDate();
+  }
+
+  function allItemsToFuzzyDate(){
+
   }
 }
