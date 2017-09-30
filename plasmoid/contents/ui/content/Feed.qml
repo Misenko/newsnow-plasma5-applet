@@ -1,7 +1,6 @@
-import QtQuick 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.2
+import QtQuick 2.7
+import QtQuick.Controls 1.5
+import QtQuick.Layouts 1.3
 
 Rectangle {
   color: theme.backgroundColor
@@ -9,9 +8,10 @@ Rectangle {
   Layout.fillHeight: true
   clip: true
 
+  readonly property int newsCheckInterval: 1000
+
   property string url
   property bool hovered: false
-  property bool failed: false
 
   Component.onCompleted: {
     displayNews();
@@ -30,21 +30,18 @@ Rectangle {
 
   PathView {
     id: view
-    property url iconImage:
-    {
+    property url iconImage: {
       if ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Image"] != 'undefined') && dataSource.data[url]["Image"] != "NO_ICON") {
         dataSource.data[url]["Image"];
-      }
-      else {
+      } else {
         "../img/rss-orange.svg";
       }
     }
     anchors.fill: parent
     preferredHighlightBegin: 1.0 / view.count
     preferredHighlightEnd: 1
-    delegate: News
-    {
-      iconImageUrl: view.iconImage
+    delegate: News {
+      iconUrl: view.iconImage
       feedTitle: dataSource.data[url]["Title"]
       numberOfNews: dataSource.data[url]["Items"].length
     }
@@ -55,32 +52,20 @@ Rectangle {
     }
   }
 
-  Image {
+  ArrowImage {
     id: leftArrow
-    width: 14
-    height: 14
     anchors.right: parent.right
     anchors.top: parent.top
-    opacity: 0
-    z: 42
-    Behavior on opacity { PropertyAnimation {} }
-    source: "../img/arrows.svgz"
     MouseArea {
       anchors.fill: parent
       onClicked: nextNews();
     }
   }
 
-  Image {
+  ArrowImage {
     id: rightArrow
-    width: 14
-    height: 14
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    opacity: 0
-    z: 42
-    Behavior on opacity { PropertyAnimation {} }
-    source: "../img/arrows.svgz"
     transform: Rotation { origin.x: 7; origin.y: 7; axis { x: 0; y: 0; z: 1 } angle: 180 }
     MouseArea {
       anchors.fill: parent
@@ -89,37 +74,36 @@ Rectangle {
   }
 
   MouseArea {
+    id: mouseArea
     anchors.fill: parent
     hoverEnabled: true
     onWheel: {
-      if (wheel.angleDelta.y < 0){
+      console.debug("Using wheel on feed with url '" + url + "'");
+
+      if (wheel.angleDelta.y < 0) {
         //down
         nextNews();
-      }
-      else{
+      } else {
         //up
         previousNews();
       }
     }
     onClicked: {
-      if (failed) {
-        return;
-      }
+      console.debug("Clicking feed with url '" + url + "'");
+
       Qt.openUrlExternally(view.model[view.currentIndex]["Link"]);
     }
     onEntered: {
-      if (failed) {
-        return;
-      }
+      console.debug("Entering feed with url '" + url + "'");
+
       view.currentItem.feedTitleToFuzzyDate();
       hovered = true;
       rightArrow.opacity = 1;
       leftArrow.opacity = 1;
     }
     onExited: {
-      if (failed) {
-        return;
-      }
+      console.debug("Exiting feed with url '" + url + "'");
+
       view.currentItem.feedTitleToFeedTitle();
       hovered = false;
       rightArrow.opacity = 0;
@@ -127,64 +111,71 @@ Rectangle {
     }
   }
 
-  Timer{
+  Timer {
     id: newsRetrievalTimer
-    interval: 1000
+    interval: newsCheckInterval
     running: false
     repeat: false
     onTriggered: displayNews()
   }
 
-  function displayNews(){
-    if(!feedReady()){
+  function displayNews() {
+    console.debug("Checking whether feed for url '" + url + "' is ready...");
+
+    if (!feedReady()) {
+      console.debug("Feed for url '" + url + "' is NOT ready yet");
       newsRetrievalTimer.running = true;
       return;
     }
 
+    console.debug("Feed for url '" + url + "' is ready");
     indicator.running = false;
     indicator.visible = false;
 
-    if (typeof(dataSource.data[url]["Items"]) == 'undefined'){
-      console.log("No items found, setting NoNews to visible")
+    if (typeof(dataSource.data[url]["Items"]) == 'undefined') {
+      console.warn("No items for url '" + url + "' found");
       noNews.visible = true;
       view.visible = false;
-      failed = true;
-    } else {
-      view.model = dataSource.data[url]["Items"];
+      mouseArea.enabled = false;
+
+      return;
     }
+
+    view.model = dataSource.data[url]["Items"];
   }
 
-  function feedReady(){
+  function feedReady() {
     return ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Title"] != 'undefined'));
   }
 
-  function next(){
-    if (hovered || !feedReady()){
+  function next() {
+    if (hovered || !feedReady()) {
       return;
     }
 
+    console.debug("Moving to next news");
     view.incrementCurrentIndex();
   }
 
-  function nextNews(){
-    if (failed) {
-      return;
-    }
-    view.currentItem.feedTitleToFeedTitle();
-    view.incrementCurrentIndex();
-    view.currentItem.feedTitleToFuzzyDate();
+  function nextNews() {
+    moveNews(1);
   }
 
-  function previousNews(){
-    if (failed) {
-      return;
-    }
-    view.currentItem.feedTitleToFeedTitle();
-    view.decrementCurrentIndex();
-    view.currentItem.feedTitleToFuzzyDate();
+  function previousNews() {
+    moveNews(-1);
   }
 
-  function allItemsToFuzzyDate(){
+  function moveNews(direction) {
+    console.debug("Moving news in direction " + direction);
 
+    view.currentItem.feedTitleToFeedTitle();
+
+    if (direction > 0) {
+      view.incrementCurrentIndex();
+    } else {
+      view.decrementCurrentIndex();
+    }
+
+    view.currentItem.feedTitleToFuzzyDate();
   }
 }

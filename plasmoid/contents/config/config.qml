@@ -1,5 +1,4 @@
-import QtQuick 2.0
-
+import QtQuick 2.7
 import org.kde.plasma.configuration 2.0
 
 ConfigModel {

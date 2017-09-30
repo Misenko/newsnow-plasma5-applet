@@ -1,6 +1,6 @@
-import QtQuick 2.0
-import QtQuick.Controls 1.4 as QtControls
-import QtQuick.Layouts 1.2 as QtLayouts
+import QtQuick 2.7
+import QtQuick.Controls 1.5
+import QtQuick.Layouts 1.3
 
 Item {
   id: generalPage
@@ -12,62 +12,62 @@ Item {
   property alias cfg_updateInterval: updateInterval.value
   property alias cfg_switchInterval: switchInterval.value
 
-  QtLayouts.ColumnLayout {
+  ColumnLayout {
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: parent.top
 
-    QtControls.GroupBox {
-      QtLayouts.Layout.fillWidth: true
+    GroupBox {
+      Layout.fillWidth: true
       title: i18n("Appearance")
       flat: true
 
-      QtLayouts.ColumnLayout {
+      ColumnLayout {
         anchors.fill: parent
-        QtControls.CheckBox {
+        CheckBox {
           id: dropTargetCheckBox
           text: i18n("Show drop target")
         }
 
-        QtControls.CheckBox {
+        CheckBox {
           id: logoCheckBox
           text: i18n("Show logo")
         }
 
-        QtControls.CheckBox {
+        CheckBox {
           id: animationsCheckBox
           text: i18n("Animations")
         }
       }
     }
 
-    QtControls.GroupBox {
-      QtLayouts.Layout.fillWidth: true
+    GroupBox {
+      Layout.fillWidth: true
       title: i18n("News")
       flat: true
 
-      QtLayouts.ColumnLayout {
+      ColumnLayout {
         anchors.fill: parent
-        QtLayouts.RowLayout {
-          QtControls.Label {
+        RowLayout {
+          Label {
             id: intervalLabel
             text: i18n("Update interval:")
           }
-          QtControls.SpinBox {
+          SpinBox {
             id: updateInterval
-            QtLayouts.Layout.minimumWidth: units.gridUnit * 8
+            Layout.minimumWidth: units.gridUnit * 8
             suffix: " "+i18n("minutes")
             stepSize: 1
           }
         }
-        QtLayouts.RowLayout {
-          QtControls.Label {
-            QtLayouts.Layout.minimumWidth: intervalLabel.width
+        RowLayout {
+          Label {
+            Layout.minimumWidth: intervalLabel.width
             text: i18n("Switch interval:")
           }
-          QtControls.SpinBox {
+          SpinBox {
             id: switchInterval
-            QtLayouts.Layout.minimumWidth: units.gridUnit * 8
+            Layout.minimumWidth: units.gridUnit * 8
             suffix: " "+i18n("seconds")
             stepSize: 1
           }

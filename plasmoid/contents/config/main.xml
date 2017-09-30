@@ -23,8 +23,6 @@
   </group>
   <group name="Feeds">
     <entry name="feedList" type="String">
-        <!-- <default>https://www.root.cz/rss/clanky/,http://rss.nytimes.com/services/xml/rss/nyt/homepage.xml,http://feeds.feedburner.com/techcrunch/startups,http://dot.kde.org/rss.xml</default> -->
-        <!-- <default>http://feeds.feedburner.com/techcrunch/startups</default> -->
         <default>http://dot.kde.org/rss.xml</default>
     </entry>
 </kcfg>
