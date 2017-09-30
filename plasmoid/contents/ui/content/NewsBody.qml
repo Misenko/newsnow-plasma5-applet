@@ -31,6 +31,7 @@ Column {
       width: wrapperWidth - 21
       maximumLineCount: 1
       elide: Text.ElideRight
+      color: theme.textColor
     }
   }
 
@@ -40,5 +41,6 @@ Column {
     text: body
     textFormat: Text.StyledText
     wrapMode: Text.WordWrap
+    color: theme.textColor
   }
 }

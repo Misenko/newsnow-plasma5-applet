@@ -96,7 +96,13 @@ Item{
 
       Image{
         id: logoImage
-        source: "img/logo-light.svg"
+        source: {
+          if (Utils.isDarkTheme()) {
+            "img/logo-light.svg";
+          } else {
+            "img/logo-dark.svg";
+          }
+        }
         width: logoWidth
         height: logoHeight
 

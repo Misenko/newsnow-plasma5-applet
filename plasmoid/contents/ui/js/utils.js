@@ -1,10 +1,10 @@
-function identicalSources(oldSources, newSources){
-  if(oldSources.length != newSources.length){
+function identicalSources(oldSources, newSources) {
+  if (oldSources.length != newSources.length) {
     return false;
   }
 
-  for(var i=0; i<oldSources.length; i++){
-    if(oldSources[i] != newSources[i]){
+  for (var i=0; i<oldSources.length; i++) {
+    if (oldSources[i] != newSources[i]) {
       return false;
     }
   }
@@ -12,11 +12,11 @@ function identicalSources(oldSources, newSources){
   return true;
 }
 
-function splitList(list){
+function splitList(list) {
   return list.split(",");
 }
 
-function dateToFuzzyDate(date){
+function dateToFuzzyDate(date) {
   var nowDate = new Date()
   var nowMS = nowDate.getTime();
   var newsDate = new Date(date * 1000)
@@ -44,4 +44,18 @@ function dateToFuzzyDate(date){
   } else {
     return i18np("%1 month ago", "%1 months ago", (Math.floor((nowMS - nestMS)/2592000000)));
   }
+}
+
+function isDarkTheme() {
+  var r = theme.backgroundColor.r
+  var g = theme.backgroundColor.g
+  var b = theme.backgroundColor.b
+
+  var darkness = 1-(0.299*r + 0.587*g + 0.114*b);
+  console.debug("Darkness of color " + theme.backgroundColor + " is " + darkness);
+  if (darkness < 0.5) {
+    return false;
+  }
+
+  return true;
 }

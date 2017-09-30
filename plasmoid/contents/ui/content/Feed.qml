@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.3
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 Rectangle {
   color: theme.backgroundColor
