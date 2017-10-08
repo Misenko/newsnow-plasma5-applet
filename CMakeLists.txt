@@ -18,3 +18,6 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma)
 
 plasma_install_package(plasmoid org.kde.plasma.newsnow)
+
+install( DIRECTORY icons/breeze DESTINATION ${ICON_INSTALL_DIR})
+install( DIRECTORY icons/breeze-dark DESTINATION ${ICON_INSTALL_DIR})
