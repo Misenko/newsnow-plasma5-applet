@@ -210,8 +210,14 @@ Item{
 
     var sources = dataSource.connectedSources.slice(0);
     for(var i=0; i<sources.length; i++){
-      dataSource.disconnectSource(sources[i]);
+      disconnectSource(sources[i]);
     }
+  }
+
+  function disconnectSource(source) {
+    console.debug("Disconnecting source '" + source + "'");
+
+    dataSource.disconnectSource(source);
   }
 
   function addSource(source) {
