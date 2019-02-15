@@ -10,6 +10,8 @@ Rectangle {
   clip: true
 
   readonly property int newsCheckInterval: 1000
+  readonly property int directionLeft: 1
+  readonly property int directionRight: -1
 
   property string url
   property bool hovered: false
@@ -167,11 +169,11 @@ Rectangle {
   }
 
   function nextNews() {
-    moveNews(1);
+    moveNews(directionLeft);
   }
 
   function previousNews() {
-    moveNews(-1);
+    moveNews(directionRight);
   }
 
   function moveNews(direction) {
@@ -179,9 +181,11 @@ Rectangle {
 
     view.currentItem.feedTitleToFeedTitle();
 
-    if (direction > 0) {
+    if (direction == directionLeft) {
       view.incrementCurrentIndex();
-    } else {
+    }
+
+    if (direction == directionRight) {
       view.decrementCurrentIndex();
     }
 
