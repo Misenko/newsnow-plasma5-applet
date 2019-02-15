@@ -35,7 +35,7 @@ Rectangle {
   PathView {
     id: view
     property url iconImage: {
-      if ((typeof feed != 'undefined') && (typeof feed["Image"] != 'undefined') && feed["Image"] != "NO_ICON") {
+      if (feedIconAvailable()) {
         feed["Image"];
       } else {
         "../img/rss-orange.svg";
@@ -158,6 +158,10 @@ Rectangle {
 
   function feedReady() {
     return feedContentReady() && feedIconReady()
+  }
+
+  function feedIconAvailable() {
+    return feedIconReady() && feed["Image"] != "NO_ICON"
   }
 
   function next() {
