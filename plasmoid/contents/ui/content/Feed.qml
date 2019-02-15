@@ -126,7 +126,7 @@ Rectangle {
   function displayNews() {
     console.debug("Checking whether feed for url '" + url + "' is ready...");
 
-    if (!feedContentReady()) {
+    if (!feedReady()) {
       console.debug("Feed for url '" + url + "' is NOT ready yet");
       newsRetrievalTimer.running = true;
       return;
@@ -148,24 +148,16 @@ Rectangle {
     view.model = feed["Items"];
   }
 
-  function feedContentReady() {
+  function feedReady() {
     return ((typeof feed != 'undefined') && (typeof feed["Title"] != 'undefined'));
   }
 
-  function feedIconReady() {
+  function feedIconAvailable() {
     return ((typeof feed != 'undefined') && (typeof feed["Image"] != 'undefined'));
   }
 
-  function feedReady() {
-    return feedContentReady() && feedIconReady()
-  }
-
-  function feedIconAvailable() {
-    return feedIconReady() && feed["Image"] != "NO_ICON"
-  }
-
   function next() {
-    if (hovered || !feedContentReady()) {
+    if (hovered || !feedReady()) {
       return;
     }
 
