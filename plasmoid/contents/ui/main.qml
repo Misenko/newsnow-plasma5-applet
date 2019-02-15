@@ -28,7 +28,6 @@ Item{
   property int switchInterval: plasmoid.configuration.switchInterval * 1000
   property bool showLogo: plasmoid.configuration.logo
   property bool showDropTarget: plasmoid.configuration.dropTarget
-  property bool animations: plasmoid.configuration.animations
   property bool userConfiguring: plasmoid.userConfiguring
 
   property int cascadingIndex: 0

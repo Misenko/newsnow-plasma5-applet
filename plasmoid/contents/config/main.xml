@@ -11,9 +11,6 @@
     <entry name="logo" type="Bool">
         <default>true</default>
     </entry>
-    <entry name="animations" type="Bool">
-        <default>true</default>
-    </entry>
     <entry name="updateInterval" type="Int">
         <default>30</default>
     </entry>

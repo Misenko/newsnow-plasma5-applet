@@ -7,7 +7,6 @@ Item {
 
   property alias cfg_dropTarget: dropTargetCheckBox.checked
   property alias cfg_logo: logoCheckBox.checked
-  property alias cfg_animations: animationsCheckBox.checked
 
   property alias cfg_updateInterval: updateInterval.value
   property alias cfg_switchInterval: switchInterval.value
@@ -32,11 +31,6 @@ Item {
         CheckBox {
           id: logoCheckBox
           text: i18n("Show logo")
-        }
-
-        CheckBox {
-          id: animationsCheckBox
-          text: i18n("Animations")
         }
       }
     }
