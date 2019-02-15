@@ -263,11 +263,8 @@ Item{
     }
 
     var feedsReady = true
-    for (var i=0; i<dataSource.connectedSources.length; i++) {
-      feedsReady = feedsReady &&
-      (typeof dataSource.data[dataSource.connectedSources[i]] != 'undefined') &&
-      (typeof dataSource.data[dataSource.connectedSources[i]]["Title"] != 'undefined') &&
-      (typeof dataSource.data[dataSource.connectedSources[i]]["Image"] != 'undefined');
+    for (var i=0; i<feeds.count; i++) {
+      feedsReady = feedsReady && feeds.itemAt(i).feedReady();
     }
 
     if (feedsReady) {
