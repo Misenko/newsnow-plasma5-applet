@@ -149,8 +149,8 @@ Item{
           anchors.fill: parent
           onDropped: {
             if(drop.hasUrls) {
-              for(var i=0; i<drop.urls.length; i++) {
-                addSource(drop.urls[i]);
+              for(var dropUrl of drop.urls) {
+                addSource(dropUrl);
               }
               accept();
             }
@@ -184,11 +184,7 @@ Item{
   function setMinimumHeight() {
     console.debug("Setting applet's minimum height...");
 
-    if (typeof dataSource.connectedSources == 'undefined') {
-      return;
-    }
-
-    Layout.minimumHeight = (newsDefaultHeight * dataSource.connectedSources.length);
+    Layout.minimumHeight = (newsDefaultHeight * feeds.count);
     if (showLogo) {
       Layout.minimumHeight = Layout.minimumHeight + logoHeight;
     }
@@ -200,12 +196,12 @@ Item{
   function connectSources(sources) {
     console.debug("Connecting sources...");
 
-    for (var i=0; i<sources.length; i++) {
-      if (!sources[i]) {
+    for (var source of sources) {
+      if (!source) {
         continue;
       }
 
-      connectSource(sources[i]);
+      connectSource(source);
     }
   }
 
@@ -213,8 +209,8 @@ Item{
     console.debug("Disconnecting sources...");
 
     var sources = dataSource.connectedSources.slice(0);
-    for(var i=0; i<sources.length; i++){
-      disconnectSource(sources[i]);
+    for(var source of sources){
+      disconnectSource(source);
     }
   }
 
