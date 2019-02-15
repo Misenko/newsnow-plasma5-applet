@@ -14,6 +14,7 @@ Rectangle {
   readonly property int directionRight: -1
 
   property string url
+  property var feed: dataSource.data[url]
   property bool hovered: false
 
   Component.onCompleted: {
@@ -34,8 +35,8 @@ Rectangle {
   PathView {
     id: view
     property url iconImage: {
-      if ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Image"] != 'undefined') && dataSource.data[url]["Image"] != "NO_ICON") {
-        dataSource.data[url]["Image"];
+      if ((typeof feed != 'undefined') && (typeof feed["Image"] != 'undefined') && feed["Image"] != "NO_ICON") {
+        feed["Image"];
       } else {
         "../img/rss-orange.svg";
       }
@@ -45,8 +46,8 @@ Rectangle {
     preferredHighlightEnd: 1
     delegate: News {
       iconUrl: view.iconImage
-      feedTitle: dataSource.data[url]["Title"]
-      numberOfNews: dataSource.data[url]["Items"].length
+      feedTitle: feed["Title"]
+      numberOfNews: feed["Items"].length
     }
     path: Path {
       startX: - (view.width/2.0)
@@ -135,7 +136,7 @@ Rectangle {
     indicator.running = false;
     indicator.visible = false;
 
-    if (typeof(dataSource.data[url]["Items"]) == 'undefined') {
+    if (typeof(feed["Items"]) == 'undefined') {
       console.warn("No items for url '" + url + "' found");
       noNews.visible = true;
       view.visible = false;
@@ -144,15 +145,15 @@ Rectangle {
       return;
     }
 
-    view.model = dataSource.data[url]["Items"];
+    view.model = feed["Items"];
   }
 
   function feedContentReady() {
-    return ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Title"] != 'undefined'));
+    return ((typeof feed != 'undefined') && (typeof feed["Title"] != 'undefined'));
   }
 
   function feedIconReady() {
-    return ((typeof dataSource.data[url] != 'undefined') && (typeof dataSource.data[url]["Image"] != 'undefined'));
+    return ((typeof feed != 'undefined') && (typeof feed["Image"] != 'undefined'));
   }
 
   function feedReady() {
