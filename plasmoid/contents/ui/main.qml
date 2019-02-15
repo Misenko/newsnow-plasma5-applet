@@ -62,6 +62,11 @@ Item{
     onSourceAdded: {
       checkAllReady();
     }
+    onNewData: {
+      for(var i=0; i<feeds.count; i++){
+        feeds.itemAt(i).displayNews();
+      }
+    }
   }
 
   Timer {
