@@ -81,88 +81,80 @@ Item {
   }
 
   ColumnLayout {
-    anchors.left: parent.left
-    anchors.right: parent.right
-    anchors.top: parent.top
+    anchors.fill: parent
 
-    GroupBox {
-      Layout.fillWidth: true
-      title: i18n("Feeds")
-      flat: true
+    ColumnLayout {
 
-      ColumnLayout {
-        anchors.fill: parent
-        RowLayout {
+      RowLayout {
+
+        Label {
+          text: i18n("Add feed:")
+        }
+
+        TextField {
+          id: addFeedField
           Layout.fillWidth: true
-
-          Label {
-            text: i18n("Add feed:")
+          validator: RegExpValidator{
+            regExp: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
           }
-
-          TextField {
-            id: addFeedField
-            Layout.fillWidth: true
-            validator: RegExpValidator{
-              regExp: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
-            }
-            onTextChanged: {
-              if (acceptableInput) {
-                addButton.enabled = true;
-              } else {
-                addButton.enabled = false;
-              }
+          onTextChanged: {
+            if (acceptableInput) {
+              addButton.enabled = true;
+            } else {
+              addButton.enabled = false;
             }
           }
         }
+      }
 
-        RowLayout {
+      RowLayout {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+
+        TableView {
           Layout.fillWidth: true
           Layout.fillHeight: true
-
-          TableView {
-            Layout.fillWidth: true
-            id: feedView
-            TableViewColumn {
-              role: "feed"
-            }
-            headerVisible: false
-            model: feedModel
-            alternatingRowColors: false
-            selectionMode: SelectionMode.SingleSelection;
-            onCurrentRowChanged: updateViewSelection()
+          id: feedView
+          TableViewColumn {
+            role: "feed"
           }
+          headerVisible: false
+          model: feedModel
+          alternatingRowColors: false
+          selectionMode: SelectionMode.SingleSelection;
+          onCurrentRowChanged: updateViewSelection()
+        }
 
-          ColumnLayout {
-            Button {
-              Layout.fillWidth: true
-              Layout.maximumWidth: 100
-              id: addButton
-              enabled: false
-              text: i18n("Add feed")
-              onClicked: addFeed()
-            }
-            Button {
-              Layout.fillWidth: true
-              Layout.maximumWidth: 100
-              id: removeButton
-              enabled: false
-              text: i18n("Remove feed")
-              onClicked: removeFeed()
-            }
-            Button {
-              Layout.alignment: Qt.AlignHCenter
-              id: upButton
-              enabled: false
-              iconName: "go-up"
-              onClicked: moveFeedUp()
-            }
-            Button {
-              Layout.alignment: Qt.AlignHCenter
-              id: downButton
-              enabled: false
-              iconName: "go-down"
-              onClicked: moveFeedDown()
-            }
+        ColumnLayout {
+          Button {
+            Layout.fillWidth: true
+            Layout.maximumWidth: 100
+            id: addButton
+            enabled: false
+            text: i18n("Add feed")
+            onClicked: addFeed()
+          }
+          Button {
+            Layout.fillWidth: true
+            Layout.maximumWidth: 100
+            id: removeButton
+            enabled: false
+            text: i18n("Remove feed")
+            onClicked: removeFeed()
+          }
+          Button {
+            Layout.alignment: Qt.AlignHCenter
+            id: upButton
+            enabled: false
+            iconName: "go-up"
+            onClicked: moveFeedUp()
+          }
+          Button {
+            Layout.alignment: Qt.AlignHCenter
+            id: downButton
+            enabled: false
+            iconName: "go-down"
+            onClicked: moveFeedDown()
           }
         }
       }
