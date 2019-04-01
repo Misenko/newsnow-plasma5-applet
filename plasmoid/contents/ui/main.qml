@@ -51,6 +51,14 @@ Item{
       connectSources(newSources);
     }
 
+    if (dataSource.interval != updateInterval) {
+      dataSource.interval = updateInterval;
+    }
+
+    if (switchNews.interval != switchInterval) {
+      switchNews.interval = switchInterval;
+    }
+
     setMinimumHeight();
   }
 
