@@ -47,7 +47,7 @@ Rectangle {
     delegate: News {
       iconUrl: view.iconImage
       feedTitle: feed["Title"]
-      numberOfNews: feed["Items"].length
+      numberOfNews: feed["Items"] ? feed["Items"].length : 0
     }
     path: Path {
       startX: - (view.width/2.0)
@@ -145,6 +145,9 @@ Rectangle {
       return;
     }
 
+    noNews.visible = false;
+    view.visible = true;
+    mouseArea.enabled = true;
     view.model = feed["Items"];
   }
 
