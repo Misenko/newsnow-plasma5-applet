@@ -11,7 +11,6 @@ include(KDECMakeSettings)
 include(KDECompilerSettings)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
-    Quick
     Core
     Qml
 )
