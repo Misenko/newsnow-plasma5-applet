@@ -20,6 +20,6 @@
   </group>
   <group name="Feeds">
     <entry name="feedList" type="String">
-        <default>http://dot.kde.org/rss.xml</default>
+        <default>https://dot.kde.org/rss.xml</default>
     </entry>
 </kcfg>
