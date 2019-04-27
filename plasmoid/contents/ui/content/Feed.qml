@@ -137,7 +137,7 @@ Rectangle {
     indicator.visible = false;
 
     if (typeof(feed["Items"]) == 'undefined') {
-      console.warn("No items for url '" + url + "' found");
+      console.debug("No items for url '" + url + "' found");
       noNews.visible = true;
       view.visible = false;
       mouseArea.enabled = false;
